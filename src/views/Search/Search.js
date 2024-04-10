@@ -34,10 +34,12 @@ function Search() {
   document.title = `${capitaLize(searchQuery)} - News`
 
   const handleDateRangeChange = (event) => {
+    localStorage.setItem("selectedDateRange", event.target.value)
     setSelectedDateRange(event.target.value)
   }
 
   const handleSourceChange = (event) => {
+    localStorage.setItem("selectedSource", event.target.value)
     setSelectedSource(event.target.value)
   }
 

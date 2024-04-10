@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container } from './index'
-import Settings from './Settings'
 import Preferences from './Preferences'
 import { Row, Col } from 'react-bootstrap'
 

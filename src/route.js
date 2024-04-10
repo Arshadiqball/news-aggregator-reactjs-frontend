@@ -8,7 +8,6 @@ import Sections from "./views/Home/Sections"
 import CategoryNews from "./views/CategoryNews/CategoryNews"
 import Search from "./views/Search/Search"
 import Profile from "./views/Profile/Profile"
-import Settings from "./views/Profile/Settings"
 import Login from "./views/Login/Login"
 import Register from "./views/Register/Register"
 import { isAuthenticated } from './assets/utils/helper'
@@ -56,16 +55,6 @@ function RouteComponent() {
               }
             />
             <Route
-              path="/setting"
-              element={
-                isAuthenticated() ? (
-                  <Settings />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
               path="/login"
               element={
                 isAuthenticated() ? (
@@ -95,11 +84,16 @@ function RouteComponent() {
                 key={uuidv4()}
                 path={path.path}
                 element={
+                  isAuthenticated() ? (
+                    <Navigate to="/" />
+                  ) : (
+                    
                   <CategoryNews
-                    key={path.key}
-                    newscategory={path.category}
-                    country={path.country}
-                  />
+                  key={path.key}
+                  newscategory={path.category}
+                  country={path.country}
+                />
+                  )
                 }
               />
             ))}

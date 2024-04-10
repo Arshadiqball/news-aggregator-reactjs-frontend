@@ -130,7 +130,6 @@ function Header() {
                         </Dropdown.Toggle>
                         <Dropdown.Menu align="right">
                           <Dropdown.Item onClick={handleProfile}>Preferences</Dropdown.Item>
-                          <Dropdown.Item onClick={handleSetting}>Settings</Dropdown.Item>
                           <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>

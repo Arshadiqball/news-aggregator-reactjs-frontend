@@ -35,6 +35,7 @@ function CategoryNews(props) {
   }
 
   const handleSourceChange = (event) => {
+    localStorage.setItem("selectedSource", event.target.value)
     setSelectedSource(event.target.value)
   }
 

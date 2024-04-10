@@ -1,29 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import NullImage from "../../views/Images/nullImage.png"
 
-function EntertainmentSection(props) {
+function ScienceSection(props) {
     const { allArticles } = props
 
     return (
         (allArticles
-            .filter(article => article.category === 'entertainment')
+            .filter(article => article.category === 'science')
             .length > 0 &&
-            <section id="mvp_home_feat2_widget-3"
+            <section id="mvp_home_feat2_widget-4"
                 className="mvp-widget-home left relative mvp_home_feat2_widget">
                 <div className="mvp-main-box">
                     <div className="mvp-widget-home-head">
                         <h4 className="mvp-widget-home-title"><span
-                            className="mvp-widget-home-title">Entertainment</span></h4>
+                            className="mvp-widget-home-title">Science</span></h4>
                     </div>
                     <div className="mvp-widget-feat2-wrap left relative">
                         <div className="mvp-widget-feat2-out left relative">
                             <div className="mvp-widget-feat2-in">
                                 <div className="mvp-widget-feat2-main left relative">
-                                    <div className="mvp-widget-feat2-left left relative">
+                                    <div className="mvp-widget-feat2-left left relative mvp-widget-feat2-left-alt">
 
                                         {allArticles && (
                                             allArticles
-                                                .filter(article => article.category === 'entertainment')
+                                                .filter(article => article.category === 'science')
                                                 .slice(0, 1).map((element, index) => (
                                                     <a href={element.url} key={index}
                                                         rel="bookmark">
@@ -54,7 +54,7 @@ function EntertainmentSection(props) {
                                     <div className="mvp-widget-feat2-right left relative">
                                         {allArticles && (
                                             allArticles
-                                                .filter(article => article.category === 'entertainment')
+                                                .filter(article => article.category === 'science')
                                                 .slice(1, 3).map((element, index) => (
                                                     <a href={element.url} key={index}
                                                         rel="bookmark">
@@ -92,7 +92,7 @@ function EntertainmentSection(props) {
                                     <div className="mvp-feat1-list left relative">
                                         {allArticles && (
                                             allArticles
-                                                .filter(article => article.category === 'entertainment')
+                                                .filter(article => article.category === 'science')
                                                 .slice(4, 7).map((element, index) => (
                                                     <a href={element.url}
                                                         rel="bookmark">
@@ -122,10 +122,10 @@ function EntertainmentSection(props) {
                                                 ))
                                         )}
                                     </div>
-                                    <a href="categories/entertainment">
+                                    <a href="categories/science">
                                         <div className="mvp-widget-feat2-side-more-but left relative">
                                             <span className="mvp-widget-feat2-side-more">More
-                                                Entertainment</span><i className="fa fa-long-arrow-right"
+                                                Science</span><i className="fa fa-long-arrow-right"
                                                     aria-hidden="true"></i>
                                         </div>
                                     </a>
@@ -140,4 +140,4 @@ function EntertainmentSection(props) {
     )
 }
 
-export default EntertainmentSection
+export default ScienceSection

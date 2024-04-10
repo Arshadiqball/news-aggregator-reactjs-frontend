@@ -3,12 +3,6 @@ function Footer() {
     <footer id="mvp-foot-wrap" className="left relative">
       <div id="mvp-foot-top" className="left relative">
         <div className="mvp-main-box">
-          <div id="mvp-foot-logo" className="left relative">
-            <a href="https://mvpthemes.com/zoxnews/">
-              <img
-                src="https://mvpthemes.com/zoxnews/wp-content/themes/zox-news/images/logos/logo-large.png"
-                alt="Zox News" data-rjs="2" /></a>
-          </div>
           <div id="mvp-foot-soc" className="left relative">
             <ul className="mvp-foot-soc-list left relative">
               <li>

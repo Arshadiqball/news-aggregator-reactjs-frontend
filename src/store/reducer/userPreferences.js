@@ -1,22 +1,29 @@
 import { 
+  GET_USER_PREFERENCES_SUCCESS,
   SET_USER_PREFERENCES_SUCCESS,
   SET_USER_PREFERENCES_REQUEST,
   SET_USER_PREFERENCES_FAILURE
 } from '../action/actionTypes'
 
 const initialState = {
-  userPreferences: {
-    category: '',
-    source: ''
-  }
+  preferences: "",
+  query: "",
+  loading: false,
 }
 
 const userPreferences = (state = initialState, action) => {
   switch (action.type) {
+    case GET_USER_PREFERENCES_SUCCESS:
+      return {
+        ...state,
+        preferences: action.payload,
+        query: action.payload.query,
+        loading: false,
+      }
     case SET_USER_PREFERENCES_SUCCESS:
       return {
         ...state,
-        user: action.payload.articles,
+        preferences: action.payload,
         query: action.payload.query,
         loading: false,
       }

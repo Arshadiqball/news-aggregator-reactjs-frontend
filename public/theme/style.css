@@ -6,6 +6,7 @@
 
 .dropdown-item {
 	width: auto !important;
+	color: black !important;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -6636,7 +6637,7 @@ a.woocommerce-review-link {
 	}
 
 #mvp-foot-soc {
-	margin-bottom: 30px;
+	margin-bottom: 0px;
 	}
 
 ul.mvp-foot-soc-list {

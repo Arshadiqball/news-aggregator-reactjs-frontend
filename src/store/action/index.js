@@ -2,7 +2,8 @@ import {
   endpointSearch, 
   endpointAll, 
   endpointCategory, 
-  endpointUserPreferences 
+  endpointUserPreferences,
+  endpointUserPreferencesGet
 } from "../../config/api"
 import axios from "./../../config/axios"
 import {
@@ -17,6 +18,7 @@ import {
   CATEGORY_ARTICLE_FAILURE,
   SET_USER_PREFERENCES_REQUEST,
   SET_USER_PREFERENCES_SUCCESS,
+  GET_USER_PREFERENCES_SUCCESS,
   SET_USER_PREFERENCES_FAILURE
 } from "./actionTypes"
 
@@ -79,7 +81,15 @@ const setUserPreferencesFailure = (error) => ({
 const setUserPreferencesSuccess = (result, query) => ({
   type: SET_USER_PREFERENCES_SUCCESS,
   payload: {
-    categoryArticles: result,
+    preferences: result,
+    query: query,
+  },
+})
+
+const getUserPreferencesSuccess = (result, query) => ({
+  type: GET_USER_PREFERENCES_SUCCESS,
+  payload: {
+    preferences: result,
     query: query,
   },
 })
@@ -91,9 +101,20 @@ const setUserPreferencesRequest = () => ({
 export const setUserPreferences = (category, source) => async (dispatch) => {
   try {
     dispatch(setUserPreferencesRequest())
-    const response = await axios.get(endpointUserPreferences(category, source))
+    const response = await axios.post(endpointUserPreferences(), { category, source })
     const result = response.data
     dispatch(setUserPreferencesSuccess(result, category, source))
+  } catch (error) {
+    dispatch(setUserPreferencesFailure(error.message))
+  }
+}
+
+export const getUserPreferences = () => async (dispatch) => {
+  try {
+    dispatch(setUserPreferencesRequest())
+    const response = await axios.get(endpointUserPreferencesGet())
+    const result = response.data
+    dispatch(getUserPreferencesSuccess(result))
   } catch (error) {
     dispatch(setUserPreferencesFailure(error.message))
   }

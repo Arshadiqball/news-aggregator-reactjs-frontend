@@ -1,13 +1,27 @@
-import React, { useState } from 'react'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
-import { setUserPreferences } from '../../store/action'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
+import { setUserPreferences, getUserPreferences } from '../../store/action'
 
 const Preferences = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedSource, setSelectedSource] = useState('')
+  const { preferences, loading } = useSelector((state) => state.preferences.preferences)
+
   const dispatch = useDispatch()
+
+  useEffect(async () => {
+
+    await dispatch(getUserPreferences());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (preferences === undefined) {
+    } else {
+      setSelectedCategory(preferences['category'])
+      setSelectedSource(preferences['source']);
+    }
+  }, [preferences]);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value)
@@ -29,7 +43,7 @@ const Preferences = () => {
             <div className="mvp-main-blog-cont left relative" style={{ transform: "none" }}>
               <div className="mvp-widget-home-head">
                 <h4 className="mvp-widget-home-title">
-                  <span className="mvp-widget-home-title">Preferences</span>
+                  <span className="mvp-widget-home-title">Preferences & Settings</span>
                 </h4>
               </div>
               <div className="mvp-main-blog-out left relative" style={{ transform: "none" }}>
@@ -37,8 +51,8 @@ const Preferences = () => {
                 <section id="mvp_tabber_widget-5" className="mvp-side-widget mvp_tabber_widget">
                   <div className="h-100 d-flex flex-column justify-content-between">
                     <div>
-                      <b htmlFor="dateRange">Select your interested category:</b>
-                      <select id="dateRange" value={selectedCategory} onChange={handleCategoryChange}>
+                      <b htmlFor="category">Select your interested category:</b>
+                      <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
                         <option value="">Select Category</option>
                         <option value="business">Business</option>
                         <option value="entertainment">Entertainment</option>
@@ -53,12 +67,12 @@ const Preferences = () => {
                       <b htmlFor="source">Select your interested source:</b>
                       <select id="source" value={selectedSource} onChange={handleSourceChange}>
                         <option value="">Select Source</option>
-                        <option value="nytimes">The New York Times</option>
-                        <option value="gnews">GNews</option>
-                        <option value="newsapi">NewsAPI</option>
+                        <option value="The New York Times">The New York Times</option>
+                        <option value="G API">G API</option>
+                        <option value="News API">News API</option>
                       </select>
-                      <br/>
-                      <br/>
+                      <br />
+                      <br />
                       <button type="button" className="btn btn-sm btn-secondary" onClick={handleApplyPreferences}>Apply Preferences</button>
                     </div>
                   </div>
