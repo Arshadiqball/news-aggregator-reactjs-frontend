@@ -1,21 +1,24 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { register } from "../../store/action/authActions"
-import { Container, Header } from "./index"
 import { capitaLize } from '../../assets/utils/helper'
-import { Row, Col, Form, Button } from "react-bootstrap"
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate, Link } from "react-router-dom"
 import styled from "styled-components"
 
+const StyledLink = styled(Link)`
+  color: #000 !important
+  font-weight: bold
+  text-decoration: none
+  &:hover {
+    text-decoration: underline
+  }
+`
+
 const Register = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  
-  const Label = styled(Form.Label)`
-    color: white
-  `
 
   const [formData, setFormData] = useState({
     name: "",
@@ -51,70 +54,66 @@ const Register = () => {
   document.title = capitaLize(title)
 
   return (
-    <Container>
-      <Header>{capitaLize(title)}</Header>
-      <Row className="justify-content-center">
-        <Col md={6}>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicName">
-              <Label>Name</Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your name"
-                value={name}
+    <div class="container2">
+      <div class="screen">
+        <div class="screen__content">
+          <form class="login" style={{ paddingTop: "30px" }} onSubmit={handleSubmit}>
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input type="name" class="login__input" placeholder="First and Last Name"
+                required
                 onChange={handleChange}
+                id="name"
                 name="name"
+                value={name} />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input type="email" class="login__input" placeholder="Email"
                 required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicEmail">
-              <Label>Email address</Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
                 onChange={handleChange}
+                id="email"
                 name="email"
-                required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-              <Label>Password</Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
+                value={email} />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input type="password" class="login__input" placeholder="Password"
                 value={password}
+                required
                 onChange={handleChange}
                 name="password"
-                required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicConfirmPassword">
-              <Label>Confirm Password</Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
+                id="password" />
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input type="password" class="login__input" placeholder="Confirm Password"
                 value={password_confirmation}
+                required
                 onChange={handleChange}
                 name="password_confirmation"
-                required
-              />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              Register
-            </Button>
-          </Form>
-
-          <p className="mt-3 text-center">
-            Already have an account? <Link to="/login">Back to Login</Link>
-          </p>
-        </Col>
-      </Row>
-    </Container>
+                id="password_confirmation" />
+            </div>
+            <button class="button login__submit">
+              <span class="button__text">Register</span>
+              <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+          </form>
+          <br />
+          <div class="social-login">
+            <p className="mt-3 text-center">
+              Already have an account? <StyledLink to="/login">Back to Login</StyledLink>
+            </p>
+          </div>
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
+    </div>
   )
 }
 

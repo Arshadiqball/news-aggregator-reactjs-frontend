@@ -1,20 +1,19 @@
 import React, { useState, useContext } from "react"
-import Context from './../../context/UserContext'
-import { Container, Header } from './index'
-import { Row, Col, Form, Button } from 'react-bootstrap'
 import { capitaLize } from '../../assets/utils/helper'
-import { Toaster } from './../../components/Toaster'
-import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
-import styled from "styled-components"
 import { getToken } from "../../services/authorization"
+import Context from './../../context/UserContext'
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-const LoginForm = styled(Form)`
-  margin-top: 50px
-`
-
-const Label = styled(Form.Label)`
-  color: black
+const RegisterLink = styled(Link)`
+color: #000 !important
+font-weight: bold
+text-decoration: none
+&:hover {
+  text-decoration: underline
+}
 `
 
 const Login = () => {
@@ -24,10 +23,7 @@ const Login = () => {
   })
 
   const { email, password } = formData
-
-  const {
-    login
-  } = useContext(Context)
+  const { login } = useContext(Context)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -37,12 +33,12 @@ const Login = () => {
     e.preventDefault()
     await login(formData)
     if (getToken()) {
-      Toaster.toastSuccess({
-        message: "Logged in",
-      })
+      toast.success("Logged In")
       setTimeout(() => {
         window.location.reload()
       }, 2000)
+    } else {
+      toast.error("Invalid Credentials")
     }
   }
 
@@ -50,47 +46,46 @@ const Login = () => {
   document.title = capitaLize(title)
 
   return (
-    <div>
-      <Header>{capitaLize(title)}</Header>
-      <Container>
-        <Row className="justify-content-center">
-          <Col md={6}>
-            <LoginForm onSubmit={handleSubmit}>
-              <Form.Group controlId="formBasicEmail">
-                <Label>Email address</Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter email"
-                  name="email"
-                  value={email}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="formBasicPassword">
-                <Label>Password</Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  value={password}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Button variant="primary" type="submit">
-                Login
-              </Button>
-            </LoginForm>
-
+    <div className="container2">
+      <div className="screen">
+        <div className="screen__content">
+          <form className="login" style={{ paddingTop: "150px" }} onSubmit={handleSubmit}>
+            <div className="login__field">
+              <i className="login__icon fas fa-user"></i>
+              <input type="email" className="login__input" placeholder="User name / Email"
+                required
+                onChange={handleChange}
+                id="email"
+                name="email"
+                value={email} />
+            </div>
+            <div className="login__field">
+              <i className="login__icon fas fa-lock"></i>
+              <input type="password" className="login__input" placeholder="Password"
+                value={password}
+                required
+                onChange={handleChange}
+                name="password"
+                id="password" />
+            </div>
+            <button className="button login__submit">
+              <span className="button__text">Log In Now</span>
+              <i className="button__icon fas fa-chevron-right"></i>
+            </button>
+          </form>
+          <div className="social-login">
             <p className="mt-3 text-center">
-              <Link to="/register">Create an Account</Link>
+              Don't have an account? <RegisterLink to="/register">Create one</RegisterLink>
             </p>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+        <div className="screen__background">
+          <span className="screen__background__shape screen__background__shape4"></span>
+          <span className="screen__background__shape screen__background__shape3"></span>
+          <span className="screen__background__shape screen__background__shape2"></span>
+          <span className="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
     </div>
   )
 }

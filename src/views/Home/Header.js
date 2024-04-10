@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import React, { useState, useContext } from "react"
 import { navs } from "../../config/config"
 import Context from './../../context/UserContext'
+import Logo from "../../views/Images/logo.png"
 
 function Header() {
   const navigate = useNavigate()
@@ -16,10 +17,6 @@ function Header() {
 
   const handleProfile = () => {
     navigate("/profile")
-  }
-
-  const handleSetting = () => {
-    navigate("/setting")
   }
 
   const [searchQuery, setSearchQuery] = useState("")
@@ -109,12 +106,12 @@ function Header() {
                           <a className="mvp-nav-logo-reg" itemProp="url"
                             href="/"><img
                               itemProp="logo"
-                              src="https://mvpthemes.com/zoxnews/wp-content/themes/zox-news/images/logos/logo-large.png"
-                              alt="Zox News" data-rjs="2" /></a>
+                              src={Logo}
+                              alt="Zox News" width="70" height="70" data-rjs="2" /></a>
                           <a className="mvp-nav-logo-small"
                             href="/"><img
-                              src="https://mvpthemes.com/zoxnews/wp-content/themes/zox-news/images/logos/logo-large.png"
-                              alt="Zox News" data-rjs="2" /></a>
+                              src={Logo}
+                              alt="Zox News" width="70" height="70" data-rjs="2" /></a>
                           <h1 className="mvp-logo-title">Zox News</h1>
                         </div>
                       </div>
@@ -122,18 +119,18 @@ function Header() {
                   </div>
                 </div>
                 <div className="mvp-nav-top-right">
-                    {getToken() && (
-                      <Dropdown>
-                        <Dropdown.Toggle as={Button} variant="link" className="text-white">
-                          <FaUser style={{ marginRight: "5px" }} />
-                          {user['name']}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu align="right">
-                          <Dropdown.Item onClick={handleProfile}>Preferences</Dropdown.Item>
-                          <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    )}
+                  {getToken() && (
+                    <Dropdown>
+                      <Dropdown.Toggle as={Button} variant="link" className="text-white">
+                        <FaUser style={{ marginRight: "5px" }} />
+                        {user['name'].split(' ')[0]}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu align="right">
+                        <Dropdown.Item onClick={handleProfile}>Preferences</Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )}
                 </div>
               </div>
             </div>

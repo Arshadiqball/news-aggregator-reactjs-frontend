@@ -15,8 +15,8 @@ function MoreNewsSection(props) {
                             allArticles
                                 .filter(article => article.category === 'technology')
                                 .slice(0, 5).map((element, index) => (
-                                    <li className="mvp-blog-story-wrap left relative infinite-post">
-                                        <a href={element.url} key={index}
+                                    <li key={index} className="mvp-blog-story-wrap left relative infinite-post">
+                                        <a href={element.url}
                                             rel="bookmark">
                                             <div className="mvp-blog-story-out relative">
                                                 <div className="mvp-blog-story-img left relative">

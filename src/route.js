@@ -1,5 +1,3 @@
-// Route.js
-
 import React, { Suspense } from "react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import Footer from "./views/Home/Footer"
@@ -84,15 +82,15 @@ function RouteComponent() {
                 key={uuidv4()}
                 path={path.path}
                 element={
-                  isAuthenticated() ? (
-                    <Navigate to="/" />
+                  !isAuthenticated() ? (
+                    <Navigate to="/login" />
                   ) : (
-                    
-                  <CategoryNews
-                  key={path.key}
-                  newscategory={path.category}
-                  country={path.country}
-                />
+
+                    <CategoryNews
+                      key={path.key}
+                      newscategory={path.category}
+                      country={path.country}
+                    />
                   )
                 }
               />

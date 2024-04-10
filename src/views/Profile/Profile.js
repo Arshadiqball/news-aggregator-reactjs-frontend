@@ -1,7 +1,5 @@
 import React from 'react'
-import { Container } from './index'
 import Preferences from './Preferences'
-import { Row, Col } from 'react-bootstrap'
 
 const Profile = () => {
 
@@ -13,15 +11,7 @@ const Profile = () => {
 
   return (
     <div>
-      <Container>
-        <Row>
-          <Col md={12}>
-            <div className="mb-4">
-              <Preferences />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <Preferences />
     </div>
   )
 }

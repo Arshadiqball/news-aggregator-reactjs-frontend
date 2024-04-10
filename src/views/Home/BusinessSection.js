@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import NullImage from "../../views/Images/nullImage.png"
 
 function BusinessSection(props) {
@@ -94,7 +94,7 @@ function BusinessSection(props) {
                                             allArticles
                                                 .filter(article => article.category === 'business')
                                                 .slice(4, 7).map((element, index) => (
-                                                    <a href={element.url}
+                                                    <a href={element.url} key={index}
                                                         rel="bookmark">
                                                         <div className="mvp-feat1-list-cont left relative">
                                                             <div className="mvp-feat1-list-out relative">

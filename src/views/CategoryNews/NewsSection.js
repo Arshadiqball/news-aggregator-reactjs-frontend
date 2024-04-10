@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import NullImage from "../../views/Images/nullImage.png"
 
 function NewsSection(props) {

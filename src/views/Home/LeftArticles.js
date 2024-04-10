@@ -2,10 +2,11 @@ import React from "react"
 import NullImage from "../../views/Images/nullImage.png"
 
 function LeftArticles(props) {
-	
-	const {allArticles} = props
+
+	const { allArticles } = props
 
 	return (
+		(allArticles.length > 0 && 
 		<div className="mvp-feat1-mid-wrap left relative">
 			<h3 className="mvp-feat1-pop-head"><span
 				className="mvp-feat1-pop-head">Trending</span></h3>
@@ -45,6 +46,7 @@ function LeftArticles(props) {
 				)}
 			</div>
 		</div>
+	)
 	)
 }
 

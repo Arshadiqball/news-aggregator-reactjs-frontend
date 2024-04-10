@@ -9,6 +9,17 @@
 	color: black !important;
 }
 
+.dropdown, .dropleft, .dropright, .dropup {
+	top: 10px !important;
+}
+
+@media (max-width: 768px) {
+	.dropdown, .dropleft, .dropright, .dropup {
+		top: 0px !important;
+		right: 40px !important;
+	}
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

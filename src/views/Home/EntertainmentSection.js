@@ -94,7 +94,7 @@ function EntertainmentSection(props) {
                                             allArticles
                                                 .filter(article => article.category === 'entertainment')
                                                 .slice(4, 7).map((element, index) => (
-                                                    <a href={element.url}
+                                                    <a href={element.url} key={index}
                                                         rel="bookmark">
                                                         <div className="mvp-feat1-list-cont left relative">
                                                             <div className="mvp-feat1-list-out relative">

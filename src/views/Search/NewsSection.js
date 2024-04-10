@@ -36,7 +36,7 @@ function NewsSection(props) {
                                                 <div className="mvp-blog-story-text left relative">
                                                     <div className="mvp-cat-date-wrap left relative">
                                                         <span
-                                                            className="mvp-cd-cat left relative">{element.category}</span><span
+                                                            className="mvp-cd-cat left relative">{element.category ?? "Unknown"}</span><span
                                                                 className="mvp-cd-date left relative">{element.publish_at_human}</span>
                                                     </div>
                                                     <h2>{element?.title?.length > 60 ? `${element.title.substring(0, 60)}` : element.title}</h2>
