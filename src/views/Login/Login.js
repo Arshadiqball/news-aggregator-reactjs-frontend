@@ -8,12 +8,12 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 const RegisterLink = styled(Link)`
-color: #000 !important
-font-weight: bold
-text-decoration: none
-&:hover {
-  text-decoration: underline
-}
+  color: #000 !important;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
     email: "",
     password: ""
   })
-
+  const [loading, setLoading] = useState(false) // State for loading spinner
   const { email, password } = formData
   const { login } = useContext(Context)
 
@@ -31,7 +31,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     await login(formData)
+    setLoading(false) 
     if (getToken()) {
       toast.success("Logged In")
       setTimeout(() => {
@@ -68,9 +70,20 @@ const Login = () => {
                 name="password"
                 id="password" />
             </div>
-            <button className="button login__submit">
-              <span className="button__text">Log In Now</span>
-              <i className="button__icon fas fa-chevron-right"></i>
+            <button className="button login__submit" disabled={loading}>
+              {loading ? (
+                <>
+                  <span className="button__text">Logging In...</span>
+                  <div className="spinner-border button__spinner" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span className="button__text">Log In Now</span>
+                  <i className="button__icon fas fa-chevron-right"></i>
+                </>
+              )}
             </button>
           </form>
           <div className="social-login">

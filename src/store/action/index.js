@@ -98,12 +98,12 @@ const setUserPreferencesRequest = () => ({
   type: SET_USER_PREFERENCES_REQUEST,
 })
 
-export const setUserPreferences = (category, source) => async (dispatch) => {
+export const setUserPreferences = (category, source, author) => async (dispatch) => {
   try {
     dispatch(setUserPreferencesRequest())
-    const response = await axios.post(endpointUserPreferences(), { category, source })
+    const response = await axios.post(endpointUserPreferences(), { category, source, author })
     const result = response.data
-    dispatch(setUserPreferencesSuccess(result, category, source))
+    dispatch(setUserPreferencesSuccess(result, category, source, author))
   } catch (error) {
     dispatch(setUserPreferencesFailure(error.message))
   }

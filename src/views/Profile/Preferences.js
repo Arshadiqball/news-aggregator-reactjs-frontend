@@ -6,6 +6,7 @@ import { Toaster } from './../../components/Toaster'
 const Preferences = () => {
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedSources, setSelectedSources] = useState([])
+  const [selectedAuthors, setSelectedAuthors] = useState([])
   const { preferences } = useSelector((state) => state.preferences.preferences)
 
   const dispatch = useDispatch()
@@ -25,6 +26,9 @@ const Preferences = () => {
     if (preferences?.source != null) {
       setSelectedSources(preferences.source)
     }
+    if (preferences?.author != null) { // Set selected authors from preferences
+      setSelectedAuthors(preferences.author)
+    }
   }, [preferences])
 
   const handleCategoryChange = (event) => {
@@ -35,8 +39,12 @@ const Preferences = () => {
     setSelectedSources(Array.from(event.target.selectedOptions, (option) => option.value))
   }
 
+  const handleAuthorChange = (event) => { // Handle author selection change
+    setSelectedAuthors(Array.from(event.target.selectedOptions, (option) => option.value))
+  }
+
   const handleApplyPreferences = () => {
-    dispatch(setUserPreferences(selectedCategories, selectedSources))
+    dispatch(setUserPreferences(selectedCategories, selectedSources, selectedAuthors)) 
       .then(() => {
         Toaster.toastSuccess({
           message: 'Preferences & Settings Updated',
@@ -83,6 +91,19 @@ const Preferences = () => {
                         <option value="The New York Times" selected={selectedSources.includes("The New York Times")}>The New York Times</option>
                         <option value="G API" selected={selectedSources.includes("G API")}>G API</option>
                         <option value="News API" selected={selectedSources.includes("News API")}>News API</option>
+                      </select>
+
+                      <br />
+                      <br />
+                      <b htmlFor="author">Select your interested authors:</b>
+
+                      <select id="author" onChange={handleAuthorChange} multiple>
+                        <option value="By Allan Kreda" selected={selectedAuthors.includes("By Allan Kreda")}>Allan Kreda</option>
+                        <option value="By Joe Drape" selected={selectedAuthors.includes("By Joe Drape")}>Joe Drape</option>
+                        <option value="By Tyler Kepner" selected={selectedAuthors.includes("By Tyler Kepner")}>Tyler Kepner</option>
+                        <option value="By Bill Pennington" selected={selectedAuthors.includes("By Bill Pennington")}>Bill Pennington</option>
+                        <option value="By Emmanuel Morgan" selected={selectedAuthors.includes("By Emmanuel Morgan")}>Emmanuel Morgan</option>
+                        <option value="By Matthew Futterman" selected={selectedAuthors.includes("By Matthew Futterman")}>Matthew Futterman</option>
                       </select>
 
                       <br />

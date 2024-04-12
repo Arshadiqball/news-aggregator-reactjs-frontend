@@ -8,11 +8,11 @@ import { useNavigate, Link } from "react-router-dom"
 import styled from "styled-components"
 
 const StyledLink = styled(Link)`
-  color: #000 !important
-  font-weight: bold
-  text-decoration: none
+  color: #000 !important;
+  font-weight: bold;
+  text-decoration: none;
   &:hover {
-    text-decoration: underline
+    text-decoration: underline;
   }
 `
 

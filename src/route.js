@@ -1,13 +1,5 @@
-import React, { Suspense } from "react"
+import React, { Suspense, lazy } from "react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
-import Footer from "./views/Home/Footer"
-import Header from "./views/Home/Header"
-import Sections from "./views/Home/Sections"
-import CategoryNews from "./views/CategoryNews/CategoryNews"
-import Search from "./views/Search/Search"
-import Profile from "./views/Profile/Profile"
-import Login from "./views/Login/Login"
-import Register from "./views/Register/Register"
 import { isAuthenticated } from './assets/utils/helper'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -15,12 +7,24 @@ import { v4 as uuidv4 } from "uuid"
 import { router } from "./config/config"
 import { UserProvider } from './context/UserContext'
 
+// Lazy-loaded components
+const Header = lazy(() => import("./views/Home/Header"))
+const Sections = lazy(() => import("./views/Home/Sections"))
+const CategoryNews = lazy(() => import("./views/CategoryNews/CategoryNews"))
+const Search = lazy(() => import("./views/Search/Search"))
+const Profile = lazy(() => import("./views/Profile/Profile"))
+const Login = lazy(() => import("./views/Login/Login"))
+const Register = lazy(() => import("./views/Register/Register"))
+const Footer = lazy(() => import("./views/Home/Footer"))
+
 function RouteComponent() {
   return (
     <UserProvider>
       <Router>
-        {isAuthenticated() && <Header />}
-        <Suspense fallback={<div>Page is Loading...</div>}>
+        <Suspense fallback={<center><div className="spinner-border button__spinner" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div></center>}>
+          {isAuthenticated() && <Header />}
           <Routes>
             <Route
               path="/"
@@ -96,9 +100,9 @@ function RouteComponent() {
               />
             ))}
           </Routes>
+          {isAuthenticated() && <Footer />}
+          <ToastContainer />
         </Suspense>
-        {isAuthenticated() && <Footer />}
-        <ToastContainer />
       </Router>
     </UserProvider>
   )

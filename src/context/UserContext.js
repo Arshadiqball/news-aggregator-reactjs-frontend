@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { login, register, logout, checkToken } from './apis'
 import { UNAUTHORIZED_RESPONSE_STATUS_CODE } from './../assets/utils/constants'

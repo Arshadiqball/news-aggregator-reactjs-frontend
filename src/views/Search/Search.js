@@ -47,7 +47,9 @@ function Search() {
     <>
       <div>
         {loading ? (
-          <Loading leftPosition={"250"} />
+          <center><div className="spinner-border button__spinner" role="status">
+            <span className="sr-only">Loading...</span>
+          </div></center>
         ) : (
           <div id="mvp-main-body-wrap" className="left relative" style={{ transform: "none", marginTop: "0px" }}>
             <div className="mvp-main-blog-wrap left relative" style={{ transform: "none" }}>
@@ -61,7 +63,9 @@ function Search() {
                   <div className="mvp-main-blog-out left relative" style={{ transform: "none" }}>
 
                     {loading ? (
-                      <Loading leftPosition={"250"} />
+                      <center><div className="spinner-border button__spinner" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div></center>
                     ) : (
                       <NewsSection articles={articles} />
                     )

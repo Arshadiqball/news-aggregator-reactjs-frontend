@@ -7,6 +7,7 @@ function CenterArticles(props) {
     return (
         <>
             {allArticles && allArticles
+                .filter(article => article.category === 'business')
                 .slice(0, 1).map((element, index) => (
                     <a key={index} href={element.url}
                         rel="bookmark">
